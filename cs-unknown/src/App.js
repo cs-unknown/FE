@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Registration from './components/Registration/Registration.js';
 import Login from './components/Login/Login.js';
 import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute.js';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
               />
             )}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/home"
             render={props => (
