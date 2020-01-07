@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from "yup";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Registration = ({ errors, touched, values, status }) => {
 
@@ -41,7 +42,9 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.passwordConfirmation && errors.passwordConfirmation && (
           <p className='error'>{errors.passwordConfirmation}</p>
         )}
-        <button type='submit'>Submit</button>
+        <Link to='/login'>
+          <button type='submit'>Submit</button>
+        </Link>
       </Form>
     </div>
   )
