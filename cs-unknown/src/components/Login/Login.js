@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 const Login = ({ errors, touched, values, status }) => {
   const [user, setUser] = useState("");
 
+  console.log('status in Login', status)
+  console.log('user in Login', user)
+
   useEffect(() => {
     if (status) {
       setUser(status);
