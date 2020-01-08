@@ -1,34 +1,14 @@
-const title = (data) => {
+export const move = (data) => {
     return {
-        type: "TITLE",
+        type: "MOVE",
         payload: data
     }
 }
 
-const description = (data) => {
+export const login = username => {
     return {
-        type: "DESCRIPTION",
-        payload: data
+        type: "LOGIN",
+        payload: username
     }
 }
 
-const players = (data) => {
-    return {
-        type: "PLAYERS",
-        payload: data
-    }
-}
-
-const error_msg = (data) => {
-    return {
-        type: "ERROR_MSG",
-        payload: data
-    }
-}
-
-export default {
-    title,
-    description,
-    players,
-    error_msg
-}
