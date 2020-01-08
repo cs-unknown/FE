@@ -16,7 +16,6 @@ let moveWest = () => {
             console.log("error making request, please get your act together. ", err)
         })
 }
-
 let moveNorth = () => {
     return axiosWithAuth
     .post('https://unknown-mud.herokuapp.com/api/adv/move/', {"direction":"n"})
@@ -28,7 +27,6 @@ let moveNorth = () => {
         console.log("error making request, please get your act together. ", err)
     })
 }
-
 let moveSouth = () => {
     return axiosWithAuth
     .post('https://unknown-mud.herokuapp.com/api/adv/move/', {"direction":"s"})
@@ -40,7 +38,6 @@ let moveSouth = () => {
         console.log("error making request, please get your act together. ", err)
     })
 }
-
 let moveEast = () => {
     return axiosWithAuth
     .post('https://unknown-mud.herokuapp.com/api/adv/move/', {"direction":"e"})

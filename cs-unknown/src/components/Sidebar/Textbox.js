@@ -15,6 +15,7 @@ const Textbox = () => {
     useEffect(()=> {
         //if there is an error message it add that to the scroll. if not it adds room title and description.
         error_msg ? setText(`${error_msg}`) : (setText([...text] + `${description}`))
+        //if players are in the room you've just entered it should show in the text box. if not, print that you're alone
         players ? setText([...text] + `players with you: ${players}`) : setText([...text] + "you are alone in this room") 
     },[title, error_msg]) //useEffect should only fire if title or error_msg change.
     

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Sidebar from './components/Sidebar/Sidebar';
+import Main from './components/Main/Main';
 import Registration from './components/Registration/Registration.js';
 import Login from './components/Login/Login.js';
 import { Switch, Route } from 'react-router-dom';
@@ -24,7 +24,7 @@ function App(props) {
           <Route
             exact
             path="/home"
-            render={props => <Sidebar {...props} />}
+            render={props => <Main {...props} />}
           />
         </Switch>
       </header>
