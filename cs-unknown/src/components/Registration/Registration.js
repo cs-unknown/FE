@@ -8,8 +8,8 @@ const Registration = ({ errors, touched, values, status }) => {
 
   const [user, setUser] = useState('');
 
-  console.log('user in registration', user)
-  console.log('status in registration', status)
+  // console.log('user in registration', user)
+  // console.log('status in registration', status)
 
   useEffect(() => {
     if (status) {
@@ -45,10 +45,11 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.password2 && errors.password2 && (
           <p className='error'>{errors.password2}</p>
         )}
-        {/* <Link to='/login'> */}
-        <button type='submit'>Submit</button>
-        {/* </Link> */}
+        <Link to='/login'>
+          <button type='submit'>Submit</button>
+        </Link>
       </Form>
+      <Link to='regist'></Link>
     </div>
   )
 }
@@ -66,8 +67,8 @@ const FormikRegistration = withFormik({
     username: Yup.string().required("You need a name to play with others."),
     password1: Yup.string()
       .required("Please provide a password")
-      .min(4, "Needs to be longer...")
-      .max(10, "Do not make it super complicated."),
+      .min(8, "Needs to be longer...")
+      .max(12, "Do not make it super complicated."),
     password2: Yup.string()
       .required()
   }),
