@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.sidebar-container {
+  border: 1px solid red;
+  max-width: 25%;
+  font-size: 1rem;
+}
