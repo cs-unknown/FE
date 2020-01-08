@@ -1,8 +1,8 @@
 class InputManager {
-  observer = []
+  observers = []
 
   subscribe(fn) {
-    this.observer.push(fn)
+    this.observers.push(fn)
   }
   unsubscribe(fn) {
     this.observers = this.observers.filter(subscriber => subscriber !== fn)
@@ -39,3 +39,5 @@ class InputManager {
     document.removeEventListener('keydown', this.handleKeys)
   }
 }
+
+export default InputManager
