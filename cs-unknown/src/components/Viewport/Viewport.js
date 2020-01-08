@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 import InputManager from '../InputManager/InputManager'
+import Bedroom from '../../assets/Bedroom.png'
 
 const Viewport = props => {
-  const [height, setHeight] = useState(36)
-  const [width, setWidth] = useState(64)
-  const [tileSize, setTileSize] = useState(10)
+  // Background for canvas
+  const [background, setBackground] = useState()
 
   // Player character starting position
-  const [playerChar, setPlayerChar] = useState({ x: 35, y: 50 })
+  const [playerChar, setPlayerChar] = useState({ x: 0, y: 0 })
 
   // Reference canvas
   const canvasRef = useRef()
+
+  // Dimensioning (16:9 aspect ratio)
+  const height = 360
+  const width = 640
+  const tileSize = 10
 
   // Instantiate InputManager
   let inputManager = new InputManager()
@@ -20,7 +25,18 @@ const Viewport = props => {
     let newPlayer = { ...playerChar }
     newPlayer.x += data.x * tileSize
     newPlayer.y += data.y * tileSize
-    setPlayerChar(newPlayer)
+    if (
+      newPlayer.x >= 0 &&
+      newPlayer.x < width - 19 &&
+      newPlayer.y >= 0 &&
+      newPlayer.y < height - 19
+    ) {
+      setPlayerChar(newPlayer)
+      console.log(`newPlayer: ${JSON.stringify(newPlayer)}`)
+    } else {
+      console.log('Cannot move beyond wall.')
+      return
+    }
   }
 
   // Start input event listener
@@ -35,21 +51,25 @@ const Viewport = props => {
     }
   })
 
-  // Update canvas whenever state changes
+  // Create / update canvas
   useEffect(() => {
     console.log('Draw to canvas')
-    // Set canvas context
+    // Get canvas context
     const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0, 0, width * tileSize, height * tileSize)
+    ctx.clearRect(0, 0, width, height)
+    // Set background image
+    // const image = new Image()
+    // image.src = Bedroom
+    // image.onload = () => ctx.drawImage(image, 0, 0)
     ctx.fillStyle = '#000'
-    ctx.fillRect(playerChar.x, playerChar.y, 18, 18)
+    ctx.fillRect(playerChar.x, playerChar.y, 20, 20)
   })
 
   return (
     <canvas
       ref={canvasRef}
-      height={height * tileSize}
-      width={width * tileSize}
+      height={height}
+      width={width}
       style={{ border: '1px solid black' }}
     ></canvas>
   )
