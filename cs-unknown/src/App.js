@@ -12,11 +12,7 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <Switch>
-          <Route
-            exact
-            path='/'
-            render={props => <Viewport height={50} width={50} tileSize={10} />}
-          />
+          <Route exact path='/' render={props => <Viewport />} />
           {/* <Route 
                 exact path='/' 
                 render={props => <Registration />}

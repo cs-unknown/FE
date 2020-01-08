@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import InputManager from '../InputManager/InputManager'
 
 // Props create the room (height * tileSize)
-const Viewport = ({ height, width, tileSize }) => {
-  // Player character starting position
-  const [playerChar, setPlayerChar] = useState({ x: 35, y: 50 })
+const Viewport = props => {
+  // Height, width &  tile size for canvas dimensions
+  const [height, setHeight] = useState('50')
+  const [width, setWidth] = useState('50')
+  const [tileSize, setTileSize] = useState('10')
+
+  // Player starting position
+  const [player, setPlayer] = useState({ x: 35, y: 50 })
 
   // Reference canvas
   const canvasRef = useRef()
@@ -14,10 +19,10 @@ const Viewport = ({ height, width, tileSize }) => {
 
   const handleInput = (action, data) => {
     console.log(`handle input: ${action}:${JSON.stringify(data)}`)
-    let newPlayer = { ...playerChar }
+    let newPlayer = { ...player }
     newPlayer.x += data.x * tileSize
     newPlayer.y += data.y * tileSize
-    setPlayerChar(newPlayer)
+    setPlayer(newPlayer)
   }
 
   // Start input event listener
@@ -39,7 +44,7 @@ const Viewport = ({ height, width, tileSize }) => {
     const ctx = canvasRef.current.getContext('2d')
     ctx.clearRect(0, 0, width * tileSize, height * tileSize)
     ctx.fillStyle = '#000'
-    ctx.fillRect(playerChar.x, playerChar.y, 18, 18)
+    ctx.fillRect(player.x, player.y, 18, 18)
   })
 
   return (
