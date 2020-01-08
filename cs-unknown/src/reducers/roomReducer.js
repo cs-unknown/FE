@@ -4,7 +4,7 @@ const roomReducer = (state = {
     players: [],
     error_msg: ""
 }, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case "TITLE":
             return state.title = action.payload;
         case "DESCRIPTION":
@@ -13,6 +13,8 @@ const roomReducer = (state = {
             return state.players = action.payload;
         case "ERROR_MSG":
             return state.error_msg = action.payload;
+        default:
+            return state
     }
 }
 

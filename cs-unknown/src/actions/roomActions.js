@@ -26,7 +26,7 @@ const error_msg = (data) => {
     }
 }
 
-export default {
+export {
     title,
     description,
     players,
