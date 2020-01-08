@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from "yup";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { login } from '../../actions/roomActions'
 
 const Registration = ({ errors, touched, values, status, history }) => {
 
@@ -19,7 +20,7 @@ const Registration = ({ errors, touched, values, status, history }) => {
     <div className='registration'>
       <h1>Register for a New Account</h1>
       <Form>
-        <Field 
+        <Field
           type='text'
           name='username'
           placeholder='Username'
@@ -27,7 +28,7 @@ const Registration = ({ errors, touched, values, status, history }) => {
         {touched.username && errors.username && (
           <p className='error'>{errors.username}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password1'
           placeholder='Password'
@@ -35,7 +36,7 @@ const Registration = ({ errors, touched, values, status, history }) => {
         {touched.password1 && errors.password1 && (
           <p className='error'>{errors.password1}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password2'
           placeholder='Password Confirmation'
@@ -69,11 +70,13 @@ const FormikRegistration = withFormik({
       .required()
   }),
 
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, { setStatus, props }) {
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/registration/`, values)
       .then(res => {
         setStatus(res.data);
+        props.useDispatch(login(values.username))
+        localStorage.setItem('token', res.data.key)
       })
       .catch(err =>
         console.log("Error in handleSubmit axios call", err.response)
