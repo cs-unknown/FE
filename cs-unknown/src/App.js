@@ -11,8 +11,8 @@ function App(props) {
   console.log('props in app', props)
   const dispatch = useDispatch()
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <header className='App-header'>
         <Switch>
           <Route
             exact path="/"
@@ -31,7 +31,7 @@ function App(props) {
         </Switch>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
