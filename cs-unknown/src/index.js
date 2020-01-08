@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux'
-import roomReducer from './reducers'
+import roomReducer from './reducers/roomReducer'
 
 const store = createStore(
   roomReducer,
