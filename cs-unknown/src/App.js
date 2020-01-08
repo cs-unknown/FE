@@ -13,7 +13,12 @@ function App(props) {
     <div className='App'>
       <header className='App-header'>
         <Switch>
-          <Route exact path='/' render={props => <Registration {...props} />} />
+          <Route
+            exact
+            path='/'
+            render={props => <Viewport />}
+            // <Registration {...props} />}
+          />
           <Route exact path='/login' render={props => <Login {...props} />} />
           <Route exact path='/home' render={props => <Sidebar {...props} />} />
         </Switch>
