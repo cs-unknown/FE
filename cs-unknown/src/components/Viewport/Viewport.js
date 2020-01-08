@@ -11,7 +11,7 @@ const Viewport = props => {
   // Player starting position
   const [player, setPlayer] = useState({ x: 35, y: 50 })
 
-  // Reference canvas
+  // Reference for canvas
   const canvasRef = useRef()
 
   // Instantiate InputManager
@@ -27,25 +27,23 @@ const Viewport = props => {
 
   // Start input event listener
   useEffect(() => {
-    console.log('Bind input')
     inputManager.bindKeys()
     inputManager.subscribe(handleInput)
-    // Close it on exit
+    // Close event listener on exit
     return () => {
       inputManager.unbindKeys()
       inputManager.unsubscribe(handleInput)
     }
-  })
+  }, [])
 
-  // Update canvas when state changes
+  // Update canvas with each state change
   useEffect(() => {
-    console.log('Draw to canvas')
-    // Set context
+    // Get canvas context
     const ctx = canvasRef.current.getContext('2d')
     ctx.clearRect(0, 0, width * tileSize, height * tileSize)
     ctx.fillStyle = '#000'
     ctx.fillRect(player.x, player.y, 18, 18)
-  })
+  }, [])
 
   return (
     <canvas

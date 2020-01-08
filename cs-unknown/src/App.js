@@ -7,25 +7,20 @@ import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute.js'
 import Viewport from './components/Viewport/Viewport'
 
-function App() {
+function App(props) {
+  console.log('props in app', props)
   return (
     <div className='App'>
       <header className='App-header'>
         <Switch>
-          <Route exact path='/' render={props => <Viewport />} />
-          {/* <Route 
-                exact path='/' 
-                render={props => <Registration />}
-              />
-          */}
-          {/* <Sidebar /> */}
-
-          <Route exact path='/login' render={props => <Login {...props} />} />
-          <PrivateRoute
+          <Route
             exact
-            path='/home'
-            render={props => <Sidebar {...props} />}
+            path='/'
+            render={props => <Viewport />}
+            // <Registration {...props} />}
           />
+          <Route exact path='/login' render={props => <Login {...props} />} />
+          <Route exact path='/home' render={props => <Sidebar {...props} />} />
         </Switch>
       </header>
     </div>
