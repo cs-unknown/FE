@@ -19,7 +19,9 @@ const MapModal = props => {
     if (map.length) return <div style={{
         display: 'grid',
         gridTemplateRows: '10% 10% 10% 10% 10% 10% 10% 10% 10% 10%',
-        gridTemplateColumns: '10% 10% 10% 10% 10% 10% 10% 10% 10% 10%'
+        gridTemplateColumns: '10% 10% 10% 10% 10% 10% 10% 10% 10% 10%',
+        width: '50%',
+        height: '50%'
     }}>
         {map.sort((first, second) => first.title.split(' ')[3] - second.title.split(' ')[3])
             .map((coo, index) => <Coordinate key={index} coo={{ ...coo, id: index }} currentRoom={coo.players.includes(currentUser)} />)}
