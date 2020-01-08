@@ -4,9 +4,12 @@ import InputManager from '../InputManager/InputManager'
 // Props create the room (height * tileSize)
 const Viewport = props => {
   // Height, width &  tile size for canvas dimensions
-  const [height, setHeight] = useState('50')
-  const [width, setWidth] = useState('50')
+  const [height, setHeight] = useState('36')
+  const [width, setWidth] = useState('64')
   const [tileSize, setTileSize] = useState('10')
+
+  // Background for canvas
+  const [background, setBackground] = useState()
 
   // Player starting position
   const [player, setPlayer] = useState({ x: 35, y: 50 })
