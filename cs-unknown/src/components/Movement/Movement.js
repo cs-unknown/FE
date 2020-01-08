@@ -12,7 +12,10 @@ const Movement = () => {
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "w" })
             .then(res => {
                 console.log("result of call to move west ", res)
-                dispatch(title(res.data.title), description(res.data.description), players(res.data.players), error_msg(res.data.error_msg))
+                dispatch(title(res.data.title))
+                dispatch(description(res.data.description))
+                dispatch(players(res.data.players))
+                dispatch(error_msg(res.data.error_msg))
             })
             .catch(err => {
                 console.log("error making request, please get your act together. ", err)

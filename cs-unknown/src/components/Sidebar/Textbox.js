@@ -7,7 +7,10 @@ import { useSelector } from 'react-redux'
 
 const Textbox = () => {
   const [text, setText] = useState(["Welcome to Game Unknown.", "*A commanding voice echoes through the chamber you are standing in and rebounds throughout your skull.*", "*a sense of dark dread fills your being, like when you have to use the restroom, but you are nowhere near one.*", "'Good luck figuring out how to win.'", "'MUAAAAHAHAHAHAAAAAAA'",])
-  const title = useSelector(state => state.title)
+  const title = useSelector(state => {
+    console.log("useSelector State: ", state)
+    return state.title
+  })
   const description = useSelector(state => state.description)
   const players = useSelector(state => state.players)
   const error_msg = useSelector(state => state.error_msg)
