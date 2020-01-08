@@ -9,10 +9,10 @@ const Main = () => {
             <div> background/room image element </div>
 
             {/* floated to the right */}
-            <Sidebar/>
+            <Sidebar />
 
             {/* rests under the background/room element */}
-            <Movement/>
+            <Movement />
         </div>
     )
 }

@@ -5,8 +5,11 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     headers: {
-      Authorization: token
-    }
+      Authorization: token,
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    },
+    withCredentials: true
   });
 };
 

@@ -4,16 +4,14 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
-const Registration = ({ errors, touched, values, status }) => {
+const Registration = ({ errors, touched, values, status, history }) => {
 
   const [user, setUser] = useState('');
-
-  // console.log('user in registration', user)
-  // console.log('status in registration', status)
 
   useEffect(() => {
     if (status) {
       setUser(status);
+      history.push('/login')
     }
   }, [status])
 
@@ -21,7 +19,7 @@ const Registration = ({ errors, touched, values, status }) => {
     <div className='registration'>
       <h1>Register for a New Account</h1>
       <Form>
-        <Field 
+        <Field
           type='text'
           name='username'
           placeholder='Username'
@@ -29,7 +27,7 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.username && errors.username && (
           <p className='error'>{errors.username}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password1'
           placeholder='Password'
@@ -37,7 +35,7 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.password1 && errors.password1 && (
           <p className='error'>{errors.password1}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password2'
           placeholder='Password Confirmation'
@@ -45,11 +43,9 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.password2 && errors.password2 && (
           <p className='error'>{errors.password2}</p>
         )}
-        <Link to='/login'>
-          <button type='submit'>Submit</button>
-        </Link>
+        <button type='submit'>Submit</button>
       </Form>
-      <Link to='regist'></Link>
+      <Link to='/login'>Already have an account? Log in here</Link>
     </div>
   )
 }
@@ -77,8 +73,8 @@ const FormikRegistration = withFormik({
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/registration/`, values)
       .then(res => {
-        console.log("axios response", res);
         setStatus(res.data);
+        localStorage.setItem('token', res.data.key)
       })
       .catch(err =>
         console.log("Error in handleSubmit axios call", err.response)
