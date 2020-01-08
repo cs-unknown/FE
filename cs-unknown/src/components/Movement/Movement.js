@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth.js';
 import { useDispatch } from 'react-redux'
-import { title, description, players, error_msg } from '../../actions/roomActions'
+import { move } from '../../actions/roomActions'
 
 const Movement = () => {
 
@@ -12,10 +12,7 @@ const Movement = () => {
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "w" })
             .then(res => {
                 console.log("result of call to move west ", res)
-                dispatch(title(res.data.title))
-                dispatch(description(res.data.description))
-                dispatch(players(res.data.players))
-                dispatch(error_msg(res.data.error_msg))
+                dispatch(move(res.data))
             })
             .catch(err => {
                 console.log("error making request, please get your act together. ", err)
@@ -26,10 +23,7 @@ const Movement = () => {
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "n" })
             .then(res => {
                 console.log("result of call to move north ", res)
-                dispatch(title(res.data.title))
-                dispatch(description(res.data.description))
-                dispatch(players(res.data.players))
-                dispatch(error_msg(res.data.error_msg))
+                dispatch(move(res.data))
             })
             .catch(err => {
                 console.log("error making request, please get your act together. ", err)
@@ -40,10 +34,7 @@ const Movement = () => {
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "s" })
             .then(res => {
                 console.log("result of call to move south ", res)
-                dispatch(title(res.data.title))
-                dispatch(description(res.data.description))
-                dispatch(players(res.data.players))
-                dispatch(error_msg(res.data.error_msg))
+                dispatch(move(res.data))
             })
             .catch(err => {
                 console.log("error making request, please get your act together. ", err)
@@ -54,10 +45,7 @@ const Movement = () => {
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "e" })
             .then(res => {
                 console.log("result of call to move east ", res)
-                dispatch(title(res.data.title))
-                dispatch(description(res.data.description))
-                dispatch(players(res.data.players))
-                dispatch(error_msg(res.data.error_msg))
+                dispatch(move(res.data))
             })
             .catch(err => {
                 console.log("error making request, please get your act together. ", err)
