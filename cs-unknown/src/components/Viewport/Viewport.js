@@ -54,15 +54,15 @@ const Viewport = props => {
   // Create / update canvas
   useEffect(() => {
     console.log('Draw to canvas')
-    // Get canvas context
-    const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0, 0, width, height)
+    // Background canvas context
+    const ctx1 = canvasRef.current.getContext('2d')
+    ctx1.clearRect(0, 0, width, height)
     // Set background image
     // const image = new Image()
     // image.src = Bedroom
-    // image.onload = () => ctx.drawImage(image, 0, 0)
-    ctx.fillStyle = '#000'
-    ctx.fillRect(playerChar.x, playerChar.y, 20, 20)
+    // image.onload = () => ctx1.drawImage(image, 0, 0)
+    ctx1.fillStyle = '#000'
+    ctx1.fillRect(playerChar.x, playerChar.y, 20, 20)
   })
 
   return (
