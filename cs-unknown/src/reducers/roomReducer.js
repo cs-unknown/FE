@@ -2,9 +2,15 @@ const roomReducer = (state = {
     title: "",
     description: "",
     players: [],
-    error_msg: ""
+    error_msg: "",
+    currentUser: ''
 }, action) => {
     switch (action.type) {
+        case "LOGIN":
+            return {
+                ...state,
+                currentUser: action.payload
+            }
         case "MOVE":
             return {
                 ...state,
