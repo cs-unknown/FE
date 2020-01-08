@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from "yup";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { login } from '../../actions/roomActions'
 
 const Registration = ({ errors, touched, values, status, history }) => {
 
@@ -69,11 +70,12 @@ const FormikRegistration = withFormik({
       .required()
   }),
 
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, { setStatus, props }) {
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/registration/`, values)
       .then(res => {
         setStatus(res.data);
+        props.useDispatch(login(values.username))
         localStorage.setItem('token', res.data.key)
       })
       .catch(err =>
