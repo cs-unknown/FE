@@ -7,8 +7,9 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token,
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
     },
-    // withCredentials: true
+    withCredentials: true
   });
 };
 
