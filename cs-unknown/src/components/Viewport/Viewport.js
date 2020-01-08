@@ -11,7 +11,7 @@ const Viewport = props => {
   // Update canvas when state changes
   useEffect(() => {
     console.log('Draw to canvas')
-    // Set context / create a black rectangle
+    // Set context
     const ctx = canvasRef.current.getContext('2d')
     ctx.clearRect(0, 0, width, height)
     ctx.fillStyle = '#000'
