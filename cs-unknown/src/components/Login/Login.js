@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Login = ({ props, errors, touched, values, status, history }) => {
   const [user, setUser] = useState("");
@@ -10,6 +11,8 @@ const Login = ({ props, errors, touched, values, status, history }) => {
   useEffect(() => {
     if (status) {
       setUser(status);
+      axios
+        .get(`https://unknown-mud.herokuapp.com/api/adv/init/`)
       history.push('/home')
     }
   }, [status]);
