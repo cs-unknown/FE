@@ -13,6 +13,8 @@ const roomReducer = (state = {
             return state.players = action.payload;
         case "ERROR_MSG":
             return state.error_msg = action.payload;
+        default: 
+            return state
     }
 }
 
