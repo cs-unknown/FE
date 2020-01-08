@@ -15,3 +15,5 @@ const room = (state = {
             return state.error_msg = action.payload;
     }
 }
+
+export default roomReducer
