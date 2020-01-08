@@ -1,4 +1,4 @@
-const room = (state = {
+const roomReducer = (state = {
     title: "",
     description: "",
     players: [],
