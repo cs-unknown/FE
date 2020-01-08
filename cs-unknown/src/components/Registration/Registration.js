@@ -4,16 +4,14 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
-const Registration = ({ errors, touched, values, status }) => {
+const Registration = ({ errors, touched, values, status, history }) => {
 
   const [user, setUser] = useState('');
-
-  // console.log('user in registration', user)
-  // console.log('status in registration', status)
 
   useEffect(() => {
     if (status) {
       setUser(status);
+      history.push('/login')
     }
   }, [status])
 
@@ -45,11 +43,9 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.password2 && errors.password2 && (
           <p className='error'>{errors.password2}</p>
         )}
-        <Link to='/login'>
-          <button type='submit'>Submit</button>
-        </Link>
+        <button type='submit'>Submit</button>
       </Form>
-      <Link to='regist'></Link>
+      <Link to='/login'>Already have an account? Log in here</Link>
     </div>
   )
 }
@@ -77,7 +73,6 @@ const FormikRegistration = withFormik({
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/registration/`, values)
       .then(res => {
-        console.log("axios response", res);
         setStatus(res.data);
       })
       .catch(err =>

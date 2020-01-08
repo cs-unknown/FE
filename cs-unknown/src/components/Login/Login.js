@@ -5,16 +5,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = ({ props, errors, touched, values, status, history }) => {
-  console.log('props', props)
   const [user, setUser] = useState("");
-
-  console.log('status in Login', status)
-  console.log('user in Login', user)
 
   useEffect(() => {
     if (status) {
       setUser(status);
-      console.log('useeffectttttt', history)
       history.push('/home')
     }
   }, [status]);
@@ -34,9 +29,7 @@ const Login = ({ props, errors, touched, values, status, history }) => {
         {touched.password && errors.password && (
           <p className="error">{errors.password}</p>
         )}
-        {/* <Link to="/home"> */}
-          <button type="submit">Submit</button>
-        {/* </Link> */}
+        <button type="submit">Submit</button>
       </Form>
     </div>
   );
@@ -57,11 +50,9 @@ const FormikLogin = withFormik({
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
-    console.log('hiiiiiiiiii from login')
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/login/`, values)
       .then(res => {
-        console.log('results in login', res)
         setStatus(res.data);
         resetForm();
       })
