@@ -21,7 +21,7 @@ const Registration = ({ errors, touched, values, status }) => {
     <div className='registration'>
       <h1>Register for a New Account</h1>
       <Form>
-        <Field 
+        <Field
           type='text'
           name='username'
           placeholder='Username'
@@ -29,7 +29,7 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.username && errors.username && (
           <p className='error'>{errors.username}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password1'
           placeholder='Password'
@@ -37,7 +37,7 @@ const Registration = ({ errors, touched, values, status }) => {
         {touched.password1 && errors.password1 && (
           <p className='error'>{errors.password1}</p>
         )}
-        <Field 
+        <Field
           type='password'
           name='password2'
           placeholder='Password Confirmation'
@@ -79,6 +79,7 @@ const FormikRegistration = withFormik({
       .then(res => {
         console.log("axios response", res);
         setStatus(res.data);
+        localStorage.setItem('token', res.data.key)
       })
       .catch(err =>
         console.log("Error in handleSubmit axios call", err.response)

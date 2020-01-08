@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 
-
+import MapModal from '../MapModal/MapModal'
 
 //for each response to a move call, the response.data will have to be passed in here as props.
 
@@ -17,9 +17,9 @@ const Textbox = () => {
 
   useEffect(() => {
     //if there is an error message it add that to the scroll. if not it adds room title and description.
-    error_msg ? setText(`${error_msg}`) : (setText([...text] + `${description}`))
+    error_msg ? setText([...text, error_msg]) : (setText([...text, description]))
     //if players are in the room you've just entered it should show in the text box. if not, print that you're alone
-    players ? setText([...text] + `players with you: ${players}`) : setText([...text] + "you are alone in this room")
+    players ? setText([...text, `players with you: ${players}`]) : setText([...text, "you are alone in this room"])
   }, [title, error_msg]) //useEffect should only fire if title or error_msg change.
 
   return (
@@ -27,6 +27,7 @@ const Textbox = () => {
     //i'm going to have to look into getting the bottom part of the scroll to show what is happening.
     <div className='textbox'>
       {text.map((line, i) => <p key={"line" + i}>{line}</p>)}
+      <MapModal />
     </div>
   )
 }

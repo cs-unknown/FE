@@ -8,7 +8,7 @@ const Movement = () => {
     const dispatch = useDispatch()
 
     let moveWest = () => {
-        return axiosWithAuth
+        return axiosWithAuth()
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "w" })
             .then(res => {
                 console.log("result of call to move west ", res)
@@ -22,7 +22,7 @@ const Movement = () => {
             })
     }
     let moveNorth = () => {
-        return axiosWithAuth
+        return axiosWithAuth()
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "n" })
             .then(res => {
                 console.log("result of call to move north ", res)
@@ -33,7 +33,7 @@ const Movement = () => {
             })
     }
     let moveSouth = () => {
-        return axiosWithAuth
+        return axiosWithAuth()
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "s" })
             .then(res => {
                 console.log("result of call to move south ", res)
@@ -44,7 +44,7 @@ const Movement = () => {
             })
     }
     let moveEast = () => {
-        return axiosWithAuth
+        return axiosWithAuth()
             .post('https://unknown-mud.herokuapp.com/api/adv/move/', { "direction": "e" })
             .then(res => {
                 console.log("result of call to move east ", res)
