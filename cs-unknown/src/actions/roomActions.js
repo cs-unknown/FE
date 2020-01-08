@@ -1,24 +1,28 @@
-const title = () => {
+const title = (data) => {
     return {
-        type: "TITLE"
+        type: "TITLE",
+        payload: data
     }
 }
 
-const description = () => {
+const description = (data) => {
     return {
-        type: "DESCRIPTION"
+        type: "DESCRIPTION",
+        payload: data
     }
 }
 
-const players = () => {
+const players = (data) => {
     return {
-        type: "PLAYERS"
+        type: "PLAYERS",
+        payload: data
     }
 }
 
-const error_msg = () => {
+const error_msg = (data) => {
     return {
-        type: "ERROR_MSG"
+        type: "ERROR_MSG",
+        payload: data
     }
 }
 
