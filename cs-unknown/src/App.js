@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Switch>
-          <Route exact path="/" render={props => <Registration />} />
+          <Route exact path="/" render={props => <Registration {...props} />} />
           {/* <Sidebar /> */}
           <Route
             exact
