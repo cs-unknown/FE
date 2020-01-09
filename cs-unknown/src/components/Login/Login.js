@@ -3,8 +3,6 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
 import { login, move } from '../../actions/roomActions'
 
 const Login = ({ props, errors, touched, values, status, history }) => {
