@@ -1,7 +1,8 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth.js';
-import { useDispatch } from 'react-redux'
-import { move } from '../../actions/roomActions'
+import { useDispatch } from 'react-redux';
+import { move } from '../../actions/roomActions';
+import './Movement.css'
 
 const Movement = () => {
 
@@ -56,7 +57,7 @@ const Movement = () => {
         <div className="move_button_container">
             <div className="direction_button" onClick={moveWest}>West</div>
             {/* css for this class will have to have smaller heights, and will flex-direction column instead of row. */}
-            <div className="northsouthButtons">
+            <div className="northsouth_buttons_container">
                 <div className="direction_button" onClick={moveNorth}>North</div>
                 <div className="direction_button" onClick={moveSouth}>South</div>
             </div>
