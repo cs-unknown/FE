@@ -6,6 +6,7 @@ import Registration from './components/Registration/Registration.js'
 import Login from './components/Login/Login.js'
 import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute.js'
+import Viewport from './components/Viewport/Viewport'
 
 function App(props) {
   console.log('props in app', props)
@@ -17,7 +18,7 @@ function App(props) {
           <Route
             exact
             path='/'
-            render={props => <Registration {...props} useDispatch={dispatch} />}
+            render={props => <Viewport />} //<Registration {...props} useDispatch={dispatch} />}
           />
           <Route
             exact
