@@ -18,12 +18,12 @@ const Viewport = props => {
   // Reference canvases
   const canvasRef1 = useRef()
   const canvasRef2 = useRef()
-  const canvasRef3 = useRef()
+  // const canvasRef3 = useRef()
 
   // Dimensioning (16:9 aspect ratio)
   const height = 360
   const width = 640
-  const tileSize = 10
+  const tileSize = 20
 
   // Instantiate InputManager
   let inputManager = new InputManager()
@@ -33,12 +33,13 @@ const Viewport = props => {
     let newPlayer = { ...playerChar }
     newPlayer.x += data.x * tileSize
     newPlayer.y += data.y * tileSize
+    newPlayer.dir = data.dir
     // Create perimeter boundary
     if (
       newPlayer.x >= 0 &&
-      newPlayer.x < width - 19 &&
+      newPlayer.x < width - 50 &&
       newPlayer.y >= 0 &&
-      newPlayer.y < height - 19
+      newPlayer.y < height - 60
     ) {
       setPlayerChar(newPlayer)
       console.log(`newPlayer: ${JSON.stringify(newPlayer)}`)
@@ -109,9 +110,6 @@ const Viewport = props => {
         dw = destination width -> frame width
         dh = destination height -> frame height    
     */
-
-    ctx2.fillStyle = '#ff0000'
-    ctx2.fillRect(playerChar.x, playerChar.y, 20, 20)
   })
 
   return (
