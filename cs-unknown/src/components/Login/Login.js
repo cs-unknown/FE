@@ -57,7 +57,9 @@ const FormikLogin = withFormik({
       .then(res => {
         setStatus(res.data);
         props.useDispatch(login(values.username))
-
+        
+        localStorage.setItem('token', res.data.key) 
+        
         axiosWithAuth().get('https://unknown-mud.herokuapp.com/api/adv/init/')
           .then(res => props.useDispatch(move(res.data)))
           .catch(err => console.error(err.response))
