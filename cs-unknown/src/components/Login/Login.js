@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axiosWithAuth from '../utils/axiosWithAuth'
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { login } from '../../actions/roomActions'
+import { login, move } from '../../actions/roomActions'
 
 const Login = ({ props, errors, touched, values, status, history }) => {
   const [user, setUser] = useState("");
@@ -56,6 +57,11 @@ const FormikLogin = withFormik({
       .then(res => {
         setStatus(res.data);
         props.useDispatch(login(values.username))
+
+        axiosWithAuth().get('https://unknown-mud.herokuapp.com/api/adv/init/')
+          .then(res => props.useDispatch(move(res.data)))
+          .catch(err => console.error(err.response))
+
         resetForm();
       })
       .catch(err =>
