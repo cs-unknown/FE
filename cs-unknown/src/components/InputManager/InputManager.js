@@ -16,16 +16,16 @@ class InputManager {
     event.preventDefault()
     switch (event.keyCode) {
       case 37: // left arrow key
-        this.broadcast('move', { x: -1, y: 0 })
+        this.broadcast('move', { x: -1, y: 0, dir: 'e' })
         break
       case 38: // up arrow key
-        this.broadcast('move', { x: 0, y: -1 })
+        this.broadcast('move', { x: 0, y: -1, dir: 'n' })
         break
       case 39: // right arrow key
-        this.broadcast('move', { x: 1, y: 0 })
+        this.broadcast('move', { x: 1, y: 0, dir: 'e' })
         break
       case 40: // down arrow key
-        this.broadcast('move', { x: 0, y: 1 })
+        this.broadcast('move', { x: 0, y: 1, dir: 's' })
         break
       default:
         break
