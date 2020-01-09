@@ -22,7 +22,7 @@ function App(props) {
           />
           <Route 
             exact
-            path='/viewport
+            path='/viewport'
             render={props => <Viewport />}
           />
           <Route
