@@ -1,0 +1,16 @@
+.theBigOne {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.backgroundThing {
+    width: 66%;
+    border: solid red;
+}
+
+.movement {
+    width: 100%;
+}
+
+

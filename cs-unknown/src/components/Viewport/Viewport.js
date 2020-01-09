@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
+
+import styles from './viewport.module.css'
 import InputManager from '../InputManager/InputManager'
-import Bedroom from '../../assets/Bedroom.png'
+import bedroom from '../../assets/Bedroom.png'
+import easternSprites from '../../assets/easternSprites.png'
+import northernSprites from '../../assets/northernSprites.png'
+import southernSprites from '../../assets/southernSprites.png'
+import westernSprites from '../../assets/westernSprites.png'
 
 const Viewport = props => {
   // Background for canvas
@@ -9,13 +15,15 @@ const Viewport = props => {
   // Player character starting position
   const [playerChar, setPlayerChar] = useState({ x: 0, y: 0 })
 
-  // Reference canvas
-  const canvasRef = useRef()
+  // Reference canvases
+  const canvasRef1 = useRef()
+  const canvasRef2 = useRef()
+  // const canvasRef3 = useRef()
 
   // Dimensioning (16:9 aspect ratio)
   const height = 360
   const width = 640
-  const tileSize = 10
+  const tileSize = 20
 
   // Instantiate InputManager
   let inputManager = new InputManager()
@@ -25,11 +33,13 @@ const Viewport = props => {
     let newPlayer = { ...playerChar }
     newPlayer.x += data.x * tileSize
     newPlayer.y += data.y * tileSize
+    newPlayer.dir = data.dir
+    // Create perimeter boundary
     if (
       newPlayer.x >= 0 &&
-      newPlayer.x < width - 19 &&
+      newPlayer.x < width - 50 &&
       newPlayer.y >= 0 &&
-      newPlayer.y < height - 19
+      newPlayer.y < height - 60
     ) {
       setPlayerChar(newPlayer)
       console.log(`newPlayer: ${JSON.stringify(newPlayer)}`)
@@ -54,24 +64,59 @@ const Viewport = props => {
   // Create / update canvas
   useEffect(() => {
     console.log('Draw to canvas')
+
     // Background canvas context
-    const ctx1 = canvasRef.current.getContext('2d')
+    const ctx1 = canvasRef1.current.getContext('2d')
+    const ctx2 = canvasRef2.current.getContext('2d')
+
+    // Wipe canvases
     ctx1.clearRect(0, 0, width, height)
+    ctx2.clearRect(0, 0, width, height)
+
     // Set background image
-    // const image = new Image()
-    // image.src = Bedroom
-    // image.onload = () => ctx1.drawImage(image, 0, 0)
-    ctx1.fillStyle = '#000'
-    ctx1.fillRect(playerChar.x, playerChar.y, 20, 20)
+    const bgImg = new Image()
+    bgImg.src = bedroom
+
+    // Draw background image
+    bgImg.onload = () => ctx1.drawImage(bgImg, 0, 0)
+
+    // Set sprite image
+    const spriteImg = new Image()
+    spriteImg.src = southernSprites
+
+    // Draw sprite image
+    spriteImg.onload = () =>
+      ctx2.drawImage(
+        spriteImg,
+        50,
+        0,
+        50,
+        60,
+        playerChar.x,
+        playerChar.y,
+        50,
+        60
+      )
+    /* 
+      Parameters for drawImage with a sprite sheet:
+      drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh):
+        img = the source image object -> sprite sheet
+        sx = source x -> frame index * frame width
+        sy = source y -> 0 (single row sprite images in assets)
+        sw = source width -> frame width 
+        sh = source height -> frame height
+        dx = destination x -> playerChar.x
+        dy = destination y -> playerChar.y
+        dw = destination width -> frame width
+        dh = destination height -> frame height    
+    */
   })
 
   return (
-    <canvas
-      ref={canvasRef}
-      height={height}
-      width={width}
-      style={{ border: '1px solid black' }}
-    ></canvas>
+    <div id={styles.container}>
+      <canvas id={styles.canvas1} ref={canvasRef1}></canvas>
+      <canvas id={styles.canvas2} ref={canvasRef2}></canvas>
+    </div>
   )
 }
 
