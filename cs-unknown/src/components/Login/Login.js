@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { login } from '../../actions/roomActions'
 
 const Login = ({ props, errors, touched, values, status, history }) => {
   const [user, setUser] = useState("");
@@ -11,8 +12,6 @@ const Login = ({ props, errors, touched, values, status, history }) => {
   useEffect(() => {
     if (status) {
       setUser(status);
-      axios
-        .get(`https://unknown-mud.herokuapp.com/api/adv/init/`)
       history.push('/home')
     }
   }, [status]);
@@ -21,9 +20,9 @@ const Login = ({ props, errors, touched, values, status, history }) => {
     <div className="login">
       <h1>Log into your account</h1>
       <Form>
-        <Field 
-          type="text" 
-          name="username" 
+        <Field
+          type="text"
+          name="username"
           placeholder="Username" />
         {touched.username && errors.username && (
           <p className="error">{errors.username}</p>
@@ -52,11 +51,12 @@ const FormikLogin = withFormik({
       .required("Please provide your password"),
   }),
 
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, props }) {
     return axios
       .post(`https://unknown-mud.herokuapp.com/api/login/`, values)
       .then(res => {
         setStatus(res.data);
+        props.useDispatch(login(values.username))
         resetForm();
       })
       .catch(err =>
