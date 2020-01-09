@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-
+import { useSelector } from 'react-redux'
 import styles from './viewport.module.css'
 import InputManager from '../InputManager/InputManager'
 import bedroom from '../../assets/Bedroom.png'
