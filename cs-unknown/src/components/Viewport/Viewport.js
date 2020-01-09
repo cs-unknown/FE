@@ -13,12 +13,12 @@ const Viewport = props => {
   const [background, setBackground] = useState()
 
   // Player character starting position
-  const [playerChar, setPlayerChar] = useState({ x: 0, y: 0 })
+  const [playerChar, setPlayerChar] = useState({ x: 295, y: 150 })
 
   // Reference canvases
   const canvasRef1 = useRef()
   const canvasRef2 = useRef()
-  // const canvasRef3 = useRef()
+  // const canvasRef3 = useRef()  -- 3rd canvas for item placement
 
   // Dimensioning (16:9 aspect ratio)
   const height = 360
@@ -80,51 +80,48 @@ const Viewport = props => {
     // Draw background image
     bgImg.onload = () => ctx1.drawImage(bgImg, 0, 0)
 
+    // Function for drawing sprites on canvas (ctx2)
+    /* 
+        Parameters for drawSprite(): 
+          img = the source img object (sprite sheet)
+          sx = source x  (frame index * frame width)
+          sy = source y = 0 (only on row of sprites per image)
+          sw = source width  (frame width) 
+          sh = source height (frame height)
+          dx = destination x (playerChar.x)
+          dy = destination y (playerChar.y)
+          dw = destination width (frame width)
+          dh = destination height (frame height)    
+      */
+    const drawSprite = (img, sx, sy, sw, sh, dx, dy, dw, dh) => {
+      spriteImg.onload = () =>
+        ctx2.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
+    }
+
     // Set sprite image
     const spriteImg = new Image()
     switch (playerChar.dir) {
       case 'n':
         spriteImg.src = northernSprites
+        drawSprite(spriteImg, 50, 0, 50, 60, playerChar.x, playerChar.y, 50, 60)
         break
       case 'e':
         spriteImg.src = easternSprites
+        drawSprite(spriteImg, 50, 0, 50, 60, playerChar.x, playerChar.y, 50, 60)
         break
       case 's':
         spriteImg.src = southernSprites
+        drawSprite(spriteImg, 50, 0, 50, 60, playerChar.x, playerChar.y, 50, 60)
         break
       case 'w':
         spriteImg.src = westernSprites
+        drawSprite(spriteImg, 50, 0, 50, 60, playerChar.x, playerChar.y, 50, 60)
         break
       default:
         spriteImg.src = southernSprites
+        drawSprite(spriteImg, 50, 0, 50, 60, playerChar.x, playerChar.y, 50, 60)
+        break
     }
-
-    // Draw sprite image
-    spriteImg.onload = () =>
-      ctx2.drawImage(
-        spriteImg,
-        50,
-        0,
-        50,
-        60,
-        playerChar.x,
-        playerChar.y,
-        50,
-        60
-      )
-    /* 
-      Parameters for drawImage with a sprite sheet:
-      drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh):
-        img = the source image object -> sprite sheet
-        sx = source x -> frame index * frame width
-        sy = source y -> 0 (single row sprite images in assets)
-        sw = source width -> frame width 
-        sh = source height -> frame height
-        dx = destination x -> playerChar.x
-        dy = destination y -> playerChar.y
-        dw = destination width -> frame width
-        dh = destination height -> frame height    
-    */
   })
 
   return (
