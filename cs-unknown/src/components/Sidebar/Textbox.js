@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
-
+import './Sidebar.css'
 import MapModal from '../MapModal/MapModal'
 
 //for each response to a move call, the response.data will have to be passed in here as props.
@@ -16,11 +16,11 @@ const Textbox = () => {
   const error_msg = useSelector(state => state.error_msg)
 
   useEffect(() => {
+    console.log(description)
     //if there is an error message it add that to the scroll. if not it adds room title and description.
-    error_msg ? setText([...text, error_msg]) : (setText([...text, description]))
+    error_msg ? setText([`${error_msg}`]) : (setText([`${description}`, (players.length ? `players with you: ${players}` : "you are alone in this room")]))
     //if players are in the room you've just entered it should show in the text box. if not, print that you're alone
-    players.length ? setText([...text, `players with you: ${players}`]) : setText([...text, "you are alone in this room"])
-  }, [title, error_msg]) //useEffect should only fire if title or error_msg change.
+  }, [description, error_msg]) //useEffect should only fire if description or error_msg change.
 
   return (
     //css will have to allow for scrolling overflow of text in this box.
