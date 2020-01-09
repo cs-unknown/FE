@@ -4,6 +4,8 @@ import { move } from '../../actions/roomActions'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import Sidebar from '../Sidebar/Sidebar';
 import Movement from "../Movement/Movement"
+import MapModal from "../MapModal/MapModal"
+import './Main.css'
 
 const Main = () => {
 
@@ -16,15 +18,18 @@ const Main = () => {
     }, [])
 
     return (
-        <div>
+        <div className="theBigOne">
             {/* should house the overlay and animations from jason whatever we end up calling that.*/}
-            <div> background/room image element </div>
+            <div className="backgroundThing">
+                <MapModal />
+                {/* rests under the background/room element */}
+                <Movement className="movement"/>   
+            </div>
 
+            
             {/* floated to the right */}
-            <Sidebar />
+            <Sidebar className="sidebar"/>
 
-            {/* rests under the background/room element */}
-            <Movement />
         </div>
     )
 }

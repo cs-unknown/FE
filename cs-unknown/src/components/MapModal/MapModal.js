@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-
 import axiosWithAuth from '../utils/axiosWithAuth'
 import Coordinate from './Coordinate'
-
+import './MapModal.css'
 const MapModal = props => {
 
     const state = useSelector(state => state)
@@ -24,23 +23,8 @@ const MapModal = props => {
             .catch(err => console.log('something', err.response))
     }, [state])
 
-    if (map.length) return <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '75%',
-        height: '50%',
-        margin: '0 auto',
-        fontSize: 20
-    }}>
-        {map.map((row, id) => <div key={id} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-            margin: 0,
-            direction: id % 2 !== 0 ? 'rtl' : 'ltr'
-        }}>
+    if (map.length) return <div className="mapDiv">
+        {map.map((row, id) => <div key={id} className="roomItem" style={{direction: id % 2 !== 0 ? 'rtl' : 'ltr'}}>
             {row.map((coo, index) => <Coordinate
                 key={index}
                 coo={coo}
