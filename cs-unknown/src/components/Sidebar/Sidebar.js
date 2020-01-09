@@ -11,7 +11,7 @@ const Sidebar = () => {
     <div className="sidebar-container">
       <Textbox />
       <TopSB />
-      <MiddleSB />
+      {/* <MiddleSB /> */}
       <BottomSB />
     </div>
   );
