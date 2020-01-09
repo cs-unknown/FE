@@ -16,7 +16,7 @@ class InputManager {
     event.preventDefault()
     switch (event.keyCode) {
       case 37: // left arrow key
-        this.broadcast('move', { x: -1, y: 0, dir: 'e' })
+        this.broadcast('move', { x: -1, y: 0, dir: 'w' })
         break
       case 38: // up arrow key
         this.broadcast('move', { x: 0, y: -1, dir: 'n' })

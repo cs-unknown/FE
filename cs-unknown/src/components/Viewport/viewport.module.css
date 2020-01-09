@@ -6,15 +6,11 @@
 }
 
 #canvas1 {
-  height: 360px;
-  width: 640px;
   position: absolute;
   z-index: 1;
 }
 
 #canvas2 {
-  height: 360px;
-  width: 640px;
   position: absolute;
   z-index: 2;
 }
