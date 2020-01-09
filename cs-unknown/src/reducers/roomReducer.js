@@ -3,10 +3,11 @@ const roomReducer = (state = {
     description: "",
     players: [],
     error_msg: "",
-    currentUser: ''
+    currentUser: localStorage.getItem('user') ? localStorage.getItem('user') : ''
 }, action) => {
     switch (action.type) {
         case "LOGIN":
+            localStorage.setItem('user', action.payload)
             return {
                 ...state,
                 currentUser: action.payload
