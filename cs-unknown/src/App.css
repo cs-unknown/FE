@@ -37,8 +37,23 @@
   }
 }
 
+.main-container {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid green;
+  padding: 20px;
+}
+
+.main-container-1 {
+  width: 75%;
+}
+
+.sub-container-1 {
+  border: 1px solid purple;
+}
+
 .sidebar-container {
   border: 1px solid red;
-  max-width: 25%;
+  width: 25%;
   font-size: 1rem;
 }
