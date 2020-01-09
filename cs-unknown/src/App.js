@@ -18,7 +18,7 @@ function App(props) {
           <Route
             exact
             path='/'
-            render={props => <Registration {...props} useDispatch={dispatch} />} // <Viewport />}
+            render={props => <Viewport />} // <Registration {...props} useDispatch={dispatch} />}
           />
           <Route
             exact

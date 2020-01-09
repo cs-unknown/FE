@@ -1,15 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+
 import styles from './viewport.module.css'
 import InputManager from '../InputManager/InputManager'
+
+import images from '../../images'
+
 import bedroom from '../../assets/Bedroom.png'
-import easternSprites from '../../assets/easternSprites.png'
-import northernSprites from '../../assets/northernSprites.png'
-import southernSprites from '../../assets/southernSprites.png'
-import westernSprites from '../../assets/westernSprites.png'
+import easternSprites from '../../assets/sprites/easternSprites.png'
+import northernSprites from '../../assets/sprites/northernSprites.png'
+import southernSprites from '../../assets/sprites/southernSprites.png'
+import westernSprites from '../../assets/sprites/westernSprites.png'
 
 const Viewport = props => {
-  // Background for canvas
+  // Object containing all images
+  const imgs = images
+  console.log(imgs)
+
+  // Background image for canvas
   const [background, setBackground] = useState()
 
   // Player character starting position
