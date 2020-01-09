@@ -82,7 +82,22 @@ const Viewport = props => {
 
     // Set sprite image
     const spriteImg = new Image()
-    spriteImg.src = southernSprites
+    switch (playerChar.dir) {
+      case 'n':
+        spriteImg.src = northernSprites
+        break
+      case 'e':
+        spriteImg.src = easternSprites
+        break
+      case 's':
+        spriteImg.src = southernSprites
+        break
+      case 'w':
+        spriteImg.src = westernSprites
+        break
+      default:
+        spriteImg.src = southernSprites
+    }
 
     // Draw sprite image
     spriteImg.onload = () =>
@@ -114,8 +129,18 @@ const Viewport = props => {
 
   return (
     <div id={styles.container}>
-      <canvas id={styles.canvas1} ref={canvasRef1}></canvas>
-      <canvas id={styles.canvas2} ref={canvasRef2}></canvas>
+      <canvas
+        id={styles.canvas1}
+        height={height}
+        width={width}
+        ref={canvasRef1}
+      ></canvas>
+      <canvas
+        id={styles.canvas2}
+        height={height}
+        width={width}
+        ref={canvasRef2}
+      ></canvas>
     </div>
   )
 }
