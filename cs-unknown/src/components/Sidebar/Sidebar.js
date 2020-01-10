@@ -2,11 +2,13 @@ import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth.js';
 import Textbox from './Textbox'
 import './Sidebar.css'
-const Sidebar = () => {
+const Sidebar = (props) => {
 
   return (
     <div className='sidebar'>
       <Textbox/>
+      {/* will need to adjust styling */}
+      <div onClick={props.changeCount} className="map_button">MAP</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { move } from '../../actions/roomActions'
 import axiosWithAuth from '../utils/axiosWithAuth'
@@ -9,7 +9,12 @@ import Viewport from '../Viewport/Viewport'
 import './Main.css'
 
 const Main = () => {
+  const [count, setCount] = useState(0)
   const dispatch = useDispatch()
+  const changeCount = () => {
+    (count==0) ? setCount(1):setCount(0);
+  }
+  
 
   useEffect(_ => {
     axiosWithAuth()
@@ -26,11 +31,13 @@ const Main = () => {
         {/* rests under the background/room element */}
         <Movement className='movement' />
       </div>
+      <div id='modal'>
+        <div className="close" style={count==0?{display:"flex"}:{display:"none"}} onClick={changeCount}>X</div>
+      </div>
 
       {/* floated to the right */}
-      <Sidebar className='sidebar' />
+      <Sidebar className='sidebar' changeCount={changeCount}/>
     </div>
   )
 }
-
 export default Main

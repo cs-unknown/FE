@@ -7,7 +7,7 @@ import InputManager from '../InputManager/InputManager'
 import images from '../../images'
 
 // temp img imports for testing
-import door4 from '../../assets/floorandwalls2/4door.png'
+import door4 from '../../assets/floorandwalls/4door.png'
 import floor from '../../assets/floorandwalls/floor-01.png'
 import easternSprites from '../../assets/sprites/easternSprites.png'
 import northernSprites from '../../assets/sprites/northernSprites.png'
