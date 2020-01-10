@@ -179,7 +179,7 @@ const Viewport = props => {
         id={styles.canvas3}
         height={height}
         width={width}
-        ref={canvasRef3}
+        ref={canvasRef2}
       ></canvas>
     </div>
   )
