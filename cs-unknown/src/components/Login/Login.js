@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { login, move } from '../../actions/roomActions'
+import './Login.css'
 
 const Login = ({ props, errors, touched, values, status, history }) => {
   const [user, setUser] = useState("");
@@ -27,12 +28,15 @@ const Login = ({ props, errors, touched, values, status, history }) => {
         {touched.username && errors.username && (
           <p className="error">{errors.username}</p>
         )}
+        <br/>
         <Field type="password" name="password" placeholder="Password" />
         {touched.password && errors.password && (
           <p className="error">{errors.password}</p>
         )}
+        <br/>
         <button type="submit">Submit</button>
       </Form>
+      <Link to='/'>Need a new account? Register here</Link>
     </div>
   );
 };

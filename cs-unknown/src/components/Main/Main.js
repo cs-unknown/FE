@@ -9,12 +9,12 @@ import Viewport from '../Viewport/Viewport'
 import './Main.css'
 
 const Main = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   const dispatch = useDispatch()
+
   const changeCount = () => {
     (count==0) ? setCount(1):setCount(0);
   }
-  
 
   useEffect(_ => {
     axiosWithAuth()
@@ -31,8 +31,9 @@ const Main = () => {
         {/* rests under the background/room element */}
         <Movement className='movement' />
       </div>
-      <div id='modal'>
-        <div className="close" style={count==0?{display:"flex"}:{display:"none"}} onClick={changeCount}>X</div>
+      <div id='modal' style={{display: count==0?"flex":"none"}}>
+        <div className="close" onClick={changeCount}>X</div>
+        <MapModal/>
       </div>
 
       {/* floated to the right */}

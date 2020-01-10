@@ -29,6 +29,8 @@ const Registration = ({ errors, touched, values, status, history }) => {
         {touched.username && errors.username && (
           <p className='error'>{errors.username}</p>
         )}
+        <br/>
+
         <Field
           type='password'
           name='password1'
@@ -37,6 +39,8 @@ const Registration = ({ errors, touched, values, status, history }) => {
         {touched.password1 && errors.password1 && (
           <p className='error'>{errors.password1}</p>
         )}
+        <br/>
+
         <Field
           type='password'
           name='password2'
@@ -45,6 +49,8 @@ const Registration = ({ errors, touched, values, status, history }) => {
         {touched.password2 && errors.password2 && (
           <p className='error'>{errors.password2}</p>
         )}
+        <br/>
+        
         <button type='submit'>Submit</button>
       </Form>
       <Link to='/login'>Already have an account? Log in here</Link>
