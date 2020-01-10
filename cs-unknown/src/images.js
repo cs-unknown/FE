@@ -29,24 +29,24 @@ const images = [
   },
   {
     id: 5,
+    src: './assets/floorandwalls/2doorEN.png',
+    type: 'door',
+    dcnt: 2,
+    name: '2den'
+  },
+  {
+    id: 6,
     src: './assets/floorandwalls/2doorES.png',
     type: 'door',
     dcnt: 2,
     name: '2des'
   },
   {
-    id: 6,
+    id: 7,
     src: './assets/floorandwalls/2doorEW.png',
     type: 'door',
     dcnt: 2,
     name: '2dew'
-  },
-  {
-    id: 7,
-    src: './assets/floorandwalls/2doorNE.png',
-    type: 'door',
-    dcnt: 2,
-    name: '2dne'
   },
   {
     id: 8,
@@ -64,38 +64,38 @@ const images = [
   },
   {
     id: 10,
-    src: './assets/floorandwalls/2doorWS.png',
+    src: './assets/floorandwalls/2doorSW.png',
     type: 'door',
     dcnt: 2,
-    name: '2dws'
+    name: '2dsw'
   },
   {
     id: 11,
-    src: './assets/floorandwalls/3doorNES.png',
+    src: './assets/floorandwalls/3doorENS.png',
     type: 'door',
     dcnt: 3,
-    name: '3dnes'
+    name: '3dens'
   },
   {
     id: 12,
-    src: './assets/floorandwalls/3doorNEW.png',
+    src: './assets/floorandwalls/3doorENW.png',
     type: 'door',
     dcnt: 3,
-    name: '3dnew'
+    name: '3denw'
   },
   {
     id: 13,
+    src: './assets/floorandwalls/3doorESW.png',
+    type: 'door',
+    dcnt: 3,
+    name: '3desw'
+  },
+  {
+    id: 14,
     src: './assets/floorandwalls/3doorNSW.png',
     type: 'door',
     dcnt: 3,
     name: '3dnsw'
-  },
-  {
-    id: 14,
-    src: './assets/floorandwalls/3doorSEW.png',
-    type: 'door',
-    dcnt: 3,
-    name: '3dsew'
   },
   {
     id: 15,
