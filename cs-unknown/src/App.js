@@ -20,6 +20,7 @@ function App(props) {
             path='/'
             render={props => <Registration {...props} useDispatch={dispatch} />}
           />
+          <Route exact path='/viewport' render={props => <Viewport />} />
           <Route
             exact
             path='/login'
