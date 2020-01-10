@@ -1,13 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import axiosWithAuth from '../utils/axiosWithAuth'
 
 import styles from './viewport.module.css'
 import InputManager from '../InputManager/InputManager'
 
-import images from '../../images'
-
-// temp img imports for testing
-import door4 from '../../assets/floorandwalls2/4door.png'
+import de from '../../assets/floorandwalls/1doorE.png'
+import dn from '../../assets/floorandwalls/1doorN.png'
+import ds from '../../assets/floorandwalls/1doorS.png'
+import dw from '../../assets/floorandwalls/1doorW.png'
+import den from '../../assets/floorandwalls/2doorEN.png'
+import des from '../../assets/floorandwalls/2doorES.png'
+import dew from '../../assets/floorandwalls/2doorEW.png'
+import dns from '../../assets/floorandwalls/2doorNS.png'
+import dnw from '../../assets/floorandwalls/2doorNW.png'
+import dsw from '../../assets/floorandwalls/2doorSW.png'
+import dens from '../../assets/floorandwalls/3doorENS.png'
+import denw from '../../assets/floorandwalls/3doorENW.png'
+import desw from '../../assets/floorandwalls/3doorESW.png'
+import dnsw from '../../assets/floorandwalls/3doorNSW.png'
+import d4 from '../../assets/floorandwalls/4door.png'
 import floor from '../../assets/floorandwalls/floor-01.png'
 import easternSprites from '../../assets/sprites/easternSprites.png'
 import northernSprites from '../../assets/sprites/northernSprites.png'
@@ -15,18 +27,26 @@ import southernSprites from '../../assets/sprites/southernSprites.png'
 import westernSprites from '../../assets/sprites/westernSprites.png'
 
 const Viewport = props => {
-  // Object containing all images
-  // const imgs = images
-
   // Map information for drawing doors in current room
-  const [roomInfo, setRoomInfo] = useState()
-
+  const [rooms, setRooms] = useState([])
   // Player character starting position
   const [playerChar, setPlayerChar] = useState({ x: 295, y: 150 })
 
   // Get current room info
-  const curRm = useSelector(state => state)
-  console.log(`Current Redux State: ${JSON.stringify(curRm)}`)
+  const curRm = useSelector(state => state.title)
+
+  // Get doors for current room
+  let getDirs = () => {
+    let room = rooms.find(rm => rm.title === curRm)
+    console.log(`Room: ${JSON.stringify(room)}`)
+    let dirs = []
+    for (let key in room) {
+      if (room[key] === true) {
+        dirs.push(key)
+      }
+    }
+    return dirs
+  }
 
   // Reference canvases
   const canvasRef1 = useRef()
@@ -42,29 +62,29 @@ const Viewport = props => {
   const dheight = 561
   const dwidth = 897
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get('https://unknown-mud.herokuapp.com/api/adv/rooms/')
-  //     .then(res => {
-  //       const sorted = res.data.sort(
-  //           (first, second) =>
-  //             second.title.split(' ')[3] - first.title.split(' ')[3]
-  //         ),
-  //         tens = []
-  //       for (let i = 0; i < sorted.length; i += 10) {
-  //         tens.push(sorted.slice(i, i + 10))
-  //       }
-  //       console.log(tens)
-  //       setMap(tens)
-  //     })
-  //     .catch(err => console.log('something', err.response))
-  // }, [state])
+  useEffect(() => {
+    axiosWithAuth()
+      .get('https://unknown-mud.herokuapp.com/api/adv/rooms/')
+      .then(res => {
+        const roomsData = res.data.map(
+          ({ room_id, north, east, south, west, title }) => ({
+            room_id,
+            north,
+            east,
+            south,
+            west,
+            title
+          })
+        )
+        setRooms(roomsData)
+      })
+      .catch(err => console.log('something', err.response))
+  }, [])
 
   // Instantiate InputManager
   let inputManager = new InputManager()
 
   const handleInput = (action, data) => {
-    console.log(`handle input: ${action}:${JSON.stringify(data)}`)
     let newPlayer = { ...playerChar }
     newPlayer.x += data.x * tileSize
     newPlayer.y += data.y * tileSize
@@ -77,10 +97,6 @@ const Viewport = props => {
       newPlayer.y < fheight - 58
     ) {
       setPlayerChar(newPlayer)
-      console.log(`newPlayer: ${JSON.stringify(newPlayer)}`)
-    } else {
-      console.log('Cannot move beyond wall.')
-      return
     }
   }
 
@@ -98,8 +114,6 @@ const Viewport = props => {
 
   // Create / update canvas
   useEffect(() => {
-    console.log('Draw to canvases')
-
     // Canvas contexts
     const ctx1 = canvasRef1.current.getContext('2d')
     const ctx2 = canvasRef2.current.getContext('2d')
@@ -149,8 +163,76 @@ const Viewport = props => {
         break
     }
 
-    // Draw walls
-    doorImg.src = door4
+    // Build image name for walls
+    const getWallImg = () => {
+      let dirs = getDirs()
+      let abbr = []
+      let doors = ''
+      for (let i = 0; i < dirs.length; i++) {
+        abbr.push(dirs[i].charAt(0))
+      }
+      abbr.sort()
+      if (abbr.length === 1) {
+        doors = `d${abbr[0]}`
+        switch (doors) {
+          case 'dn':
+            doors = dn
+            break
+          case 'de':
+            doors = de
+            break
+          case 'ds':
+            doors = ds
+            break
+          case 'dw':
+            doors = dw
+            break
+        }
+      } else if (abbr.length === 2) {
+        doors = `d${abbr[0]}${abbr[1]}`
+        switch (doors) {
+          case 'den':
+            doors = den
+            break
+          case 'des':
+            doors = des
+            break
+          case 'dew':
+            doors = dew
+            break
+          case 'dns':
+            doors = dns
+            break
+          case 'dnw':
+            doors = dnw
+            break
+          case 'dsw':
+            doors = dsw
+            break
+        }
+      } else if (abbr.length === 3) {
+        doors = `d${abbr[0]}${abbr[1]}${abbr[2]}`
+        switch (doors) {
+          case 'dens':
+            doors = dens
+            break
+          case 'denw':
+            doors = denw
+            break
+          case 'desw':
+            doors = desw
+            break
+          case 'dnsw':
+            doors = dnsw
+            break
+        }
+      } else {
+        doors = d4
+      }
+      return doors
+    }
+
+    doorImg.src = getWallImg()
     doorImg.onload = () => ctx3.drawImage(doorImg, 0, 0)
   })
 
