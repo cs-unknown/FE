@@ -7,21 +7,7 @@ import InputManager from '../InputManager/InputManager'
 import images from '../../images'
 
 // temp img imports for testing
-import door1E from '../../assets/floorandwalls/1doorE.png'
-import door1N from '../../assets/floorandwalls/1doorN.png'
-import door1S from '../../assets/floorandwalls/1doorS.png'
-import door1W from '../../assets/floorandwalls/1doorW.png'
-import door2ES from '../../assets/floorandwalls/2doorES.png'
-import door2EW from '../../assets/floorandwalls/2doorEW.png'
-import door2NE from '../../assets/floorandwalls/2doorNE.png'
-import door2NS from '../../assets/floorandwalls/2doorNS.png'
-import door2NW from '../../assets/floorandwalls/2doorNW.png'
-import door2WS from '../../assets/floorandwalls/2doorWS.png'
-import door3NES from '../../assets/floorandwalls/3doorNES.png'
-import door3NEW from '../../assets/floorandwalls/3doorNEW.png'
-import door3NSW from '../../assets/floorandwalls/3doorNSW.png'
-import door3SEW from '../../assets/floorandwalls/3doorSEW.png'
-import door4 from '../../assets/floorandwalls/4door.png'
+import door4 from '../../assets/floorandwalls2/4door.png'
 import floor from '../../assets/floorandwalls/floor-01.png'
 import easternSprites from '../../assets/sprites/easternSprites.png'
 import northernSprites from '../../assets/sprites/northernSprites.png'
@@ -38,15 +24,23 @@ const Viewport = props => {
   // Player character starting position
   const [playerChar, setPlayerChar] = useState({ x: 295, y: 150 })
 
+  // Get current room info
+  const curRm = useSelector(state => state)
+  console.log(`Current Redux State: ${JSON.stringify(curRm)}`)
+
   // Reference canvases
   const canvasRef1 = useRef()
   const canvasRef2 = useRef()
   const canvasRef3 = useRef()
 
   // Floor dimensions (16:9 aspect ratio)
-  const height = 360
-  const width = 640
+  const fheight = 366
+  const fwidth = 640
   const tileSize = 20
+
+  // Door dimensions
+  const dheight = 561
+  const dwidth = 897
 
   // useEffect(() => {
   //   axiosWithAuth()
@@ -78,9 +72,9 @@ const Viewport = props => {
     // Create perimeter boundary
     if (
       newPlayer.x >= 0 &&
-      newPlayer.x < width - 50 &&
+      newPlayer.x < fwidth - 25 &&
       newPlayer.y >= 0 &&
-      newPlayer.y < height - 60
+      newPlayer.y < fheight - 58
     ) {
       setPlayerChar(newPlayer)
       console.log(`newPlayer: ${JSON.stringify(newPlayer)}`)
@@ -112,9 +106,9 @@ const Viewport = props => {
     const ctx3 = canvasRef3.current.getContext('2d')
 
     // Wipe canvases
-    ctx1.clearRect(0, 0, width, height)
-    ctx2.clearRect(0, 0, width, height)
-    ctx3.clearRect(0, 0, width, height)
+    ctx1.clearRect(0, 0, fwidth, fheight)
+    ctx2.clearRect(0, 0, fwidth, fheight)
+    ctx3.clearRect(0, 0, dwidth, dheight)
 
     // Instantiate new Image
     const floorImg = new Image()
@@ -162,24 +156,23 @@ const Viewport = props => {
 
   return (
     <div id={styles.container}>
-      <img id='walls' src={door4} />
       <canvas
         id={styles.canvas1}
-        height={height}
-        width={width}
+        height={fheight}
+        width={fwidth}
         ref={canvasRef1}
       ></canvas>
       <canvas
         id={styles.canvas2}
-        height={height}
-        width={width}
+        height={fheight}
+        width={fwidth}
         ref={canvasRef2}
       ></canvas>
       <canvas
         id={styles.canvas3}
-        height={height}
-        width={width}
-        ref={canvasRef2}
+        height={dheight}
+        width={dwidth}
+        ref={canvasRef3}
       ></canvas>
     </div>
   )

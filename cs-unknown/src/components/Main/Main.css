@@ -1,14 +1,14 @@
 .theBigOne {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .backgroundThing {
-    width: 66%;
-    height: 95vh;
+  width: 66%;
+  height: 60vh;
 }
 
 .movement {
-    width: 100%;
+  width: 100%;
 }
